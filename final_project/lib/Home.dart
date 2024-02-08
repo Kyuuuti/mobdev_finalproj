@@ -2,8 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:midterm/Dashboard.dart';
-import 'package:midterm/Notifications.dart';
-import 'package:midterm/Profile.dart';
+//import 'package:midterm/Notifications.dart';
+//import 'package:midterm/Profile.dart';
+import 'package:midterm/Randomizer.dart';
 import 'package:midterm/Settings.dart';
 
 class Home extends StatefulWidget {
@@ -56,8 +57,9 @@ class _HomeState extends State<Home> {
         children: const [
           //list of pages to view
           Dashboard(),
-          Notifications(),
-          Profile()
+          Randomizer(),
+          //Notifications(),
+          //Profile()
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -75,13 +77,17 @@ class _HomeState extends State<Home> {
             label: "Dashboard",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.notifications),
-            label: "Notifications",
+            icon: Icon(Icons.loop),
+            label: "Randomizer",
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person), 
-            label: "Profile",
-          )
+          // BottomNavigationBarItem(
+          //   icon: Icon(Icons.notifications),
+          //   label: "Notifications",
+          // ),
+          // BottomNavigationBarItem(
+          //   icon: Icon(Icons.person), 
+          //   label: "Profile",
+          // )
         ],
       ),
     );
