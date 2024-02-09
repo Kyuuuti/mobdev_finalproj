@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:midterm/Dashboard.dart';
-import 'package:midterm/Details.dart';
 import 'package:midterm/ForgotPassword.dart';
 import 'package:midterm/Home.dart';
 import 'package:midterm/Notifications.dart';
@@ -18,5 +17,4 @@ final Map<String, WidgetBuilder> routes = {
   Dashboard.routeName:(BuildContext context) => const Dashboard(),
   Notifications.routeName:(BuildContext context) => const Notifications(),
   Profile.routeName:(BuildContext context) => const Profile(),
-  Details.routeName:(BuildContext context) => const Details()
 };

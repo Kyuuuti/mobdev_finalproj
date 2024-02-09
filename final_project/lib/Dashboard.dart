@@ -23,7 +23,7 @@ class _DashboardState extends State<Dashboard> {
     super.initState();
     _searchController = TextEditingController();
     fetchData();
-  }
+  } 
 
   Future<void> fetchData() async {
     final searchKeyword = _searchController.text;
@@ -78,10 +78,11 @@ class _DashboardState extends State<Dashboard> {
                       color: Colors.green,
                     ),
                     onTap: () {
-                      Navigator.pushNamed(
+                      Navigator.push(
                         context,
-                        Details.routeName,
-                        arguments: meals[index],
+                        MaterialPageRoute(
+                          builder: (context) => Details(meal: meals[index])
+                        ),
                       );
                     },
                   );
