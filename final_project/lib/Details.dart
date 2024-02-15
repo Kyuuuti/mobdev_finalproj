@@ -47,6 +47,7 @@ class _DetailsState extends State<Details> {
         title: Text(meal.name),
       ),
       body: Center(
+        child: SingleChildScrollView(
         child: mealDetails != null
         ? Center(
             child: Column(
@@ -65,6 +66,7 @@ class _DetailsState extends State<Details> {
               ]
             )
           ): CircularProgressIndicator()
+        )
       )
     );
   }
