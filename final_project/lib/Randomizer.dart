@@ -2,6 +2,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:midterm/Details.dart';
 import 'package:midterm/Meal.dart';
 
 class Randomizer extends StatefulWidget {
@@ -47,9 +48,21 @@ class _RandomizerState extends State<Randomizer> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Icon(Icons.loop ,size: 80),
+            Text("You will make:"),
             randomMeal != null
-                ? Column(
-                    children: [Text("You will make: ${randomMeal!.name}!")],
+                ? GestureDetector(
+                  onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Details(meal: randomMeal!),
+                        ),
+                      );
+                    },
+                    child: Text(
+                      "${randomMeal!.name}!",
+                      style: TextStyle(color: Colors.blue, decoration: TextDecoration.underline)
+                    ),
                   )
                 : Text("What to cook today?"),
                 SizedBox(height: 20.0),
