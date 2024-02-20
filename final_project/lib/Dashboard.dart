@@ -16,6 +16,8 @@ class Dashboard extends StatefulWidget {
 
 class _DashboardState extends State<Dashboard> {
   List<Meal> meals = [];
+  List<Meal> bookmarkedMeals = [];
+  
   late TextEditingController _searchController;
 
   @override
@@ -38,6 +40,16 @@ class _DashboardState extends State<Dashboard> {
     } else {
       throw Exception('Failed to load data');
     }
+  }
+
+  void toggleBookmark(Meal meal) {
+    setState(() {
+      if (bookmarkedMeals.contains(meal)) {
+        bookmarkedMeals.remove(meal);
+      } else {
+        bookmarkedMeals.add(meal);
+      }
+    });
   }
 
   @override
@@ -66,24 +78,31 @@ class _DashboardState extends State<Dashboard> {
               child: ListView.builder(
                 itemCount: meals.length,
                 itemBuilder: (context, index) {
+                  final meal = meals[index];
+                  final isBookmarked = bookmarkedMeals.contains(meal);
                   return ListTile(
                     title: Text(
-                      meals[index].name,
+                      meal.name,
                       style: const TextStyle(
                         color: Colors.red
                       ),
                     ),
-                    leading: const Icon(
-                      Icons.dining,
-                      color: Colors.green,
+                    leading: const Icon(Icons.dining, color: Colors.green),
+                    trailing: IconButton(
+                      icon: isBookmarked ? Icon(Icons.bookmark) : Icon(Icons.bookmark_outline),
+                      onPressed: () => toggleBookmark(meal)
                     ),
                     onTap: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => Details(meal: meals[index])
+                          builder: (context) => Details(meal: meal)
                         ),
-                      );
+                      ).then((value) {
+                        if (value != null && value is Meal) {
+                          toggleBookmark(value);
+                        }
+                      });
                     },
                   );
                 },
@@ -95,45 +114,3 @@ class _DashboardState extends State<Dashboard> {
     );
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import 'package:flutter/material.dart';
-
-// class Dashboard extends StatelessWidget {
-//   const Dashboard({super.key});
-
-//   static const String routeName = "dashboard";
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return const Placeholder();
-//   }
-// }

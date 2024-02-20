@@ -13,7 +13,8 @@ class Meal {
     required this.category,
     required this.area,
     required this.imgUrl,
-    required this.ins});
+    required this.ins
+  });
 
   factory Meal.fromJson(Map<String, dynamic> json) {
     return Meal(
