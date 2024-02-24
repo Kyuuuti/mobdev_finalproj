@@ -7,12 +7,14 @@ class PasswordField extends StatelessWidget {
   final String hintText;
   final bool obscureText;
   final VoidCallback onTap;
+  final TextEditingController controller;
 
   const PasswordField(
     {super.key, required this.labelText, 
     required this.hintText, 
     required this.obscureText, 
-    required this.onTap});
+    required this.onTap,
+    required this.controller});
 
   @override
   Widget build(BuildContext context) {

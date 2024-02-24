@@ -1,10 +1,10 @@
 // ignore_for_file: file_names, library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
-import 'package:midterm/Bookmark.dart';
-import 'package:midterm/Dashboard.dart';
-import 'package:midterm/Randomizer.dart';
-import 'package:midterm/Settings.dart';
+import 'package:midterm/screens/Bookmark.dart';
+import 'package:midterm/screens/Dashboard.dart';
+import 'package:midterm/screens/Randomizer.dart';
+import 'package:midterm/screens/Settings.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);

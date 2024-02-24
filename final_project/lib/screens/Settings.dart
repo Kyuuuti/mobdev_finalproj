@@ -1,8 +1,8 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
-import 'package:midterm/LogoutButton.dart';
-import 'package:midterm/main.dart';
+import 'package:midterm/components/LogoutButton.dart';
+import 'package:midterm/screens/index.dart';
 
 class Settings extends StatelessWidget {
   const Settings({super.key});

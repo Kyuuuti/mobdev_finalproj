@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:midterm/Details.dart';
-import 'package:midterm/Meal.dart';
+import 'package:midterm/screens/Details.dart';
+import 'package:midterm/models/Meal.dart';
 
 class Bookmark extends StatefulWidget {
   final List<Meal> bookmarkedMeals;

@@ -2,7 +2,7 @@
 
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'Meal.dart';
+import '../models/Meal.dart';
 import 'package:http/http.dart' as http;
 
 class Details extends StatefulWidget {

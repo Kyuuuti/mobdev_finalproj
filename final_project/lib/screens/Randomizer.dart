@@ -2,8 +2,8 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:midterm/Details.dart';
-import 'package:midterm/Meal.dart';
+import 'package:midterm/screens/Details.dart';
+import 'package:midterm/models/Meal.dart';
 
 class Randomizer extends StatefulWidget {
   const Randomizer({Key? key}) : super(key: key);

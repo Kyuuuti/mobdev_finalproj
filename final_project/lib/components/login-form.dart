@@ -7,12 +7,14 @@ class LoginForm extends StatelessWidget {
   final String hintText;
   final IconData iconData;
   final TextInputType textInputType;
+  final TextEditingController controller;
   
   const LoginForm(
     {super.key, required this.labelText, 
     required this.hintText, 
     required this.iconData, 
-    required this.textInputType});
+    required this.textInputType,
+    required this.controller});
 
   @override
   Widget build(BuildContext context) {

@@ -2,8 +2,8 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:midterm/Details.dart';
-import 'Meal.dart';
+import 'package:midterm/screens/Details.dart';
+import '../models/Meal.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({Key? key}) : super(key: key);
