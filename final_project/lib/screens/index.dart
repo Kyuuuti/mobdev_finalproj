@@ -6,6 +6,7 @@ import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:midterm/components/PasswordField.dart';
 import 'package:midterm/components/PrimaryButton.dart';
 import 'package:midterm/components/login-form.dart';
+import 'package:midterm/screens/Dashboard.dart';
 
 class Login extends StatefulWidget {
   static const String routeName = "login";
@@ -194,6 +195,7 @@ class _LoginState extends State<Login> {
                 email: loginEmailTextController.text,
                 password: loginPasswordTextController.text);
         print(userCredential);
+        Navigator.pushReplacementNamed(context, Dashboard.routeName);
       } catch (e) {
         _showMyDialog('Email or password is invalid.');
       }
