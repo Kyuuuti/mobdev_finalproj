@@ -10,7 +10,8 @@ class PasswordField extends StatelessWidget {
   final TextEditingController controller;
 
   const PasswordField(
-    {super.key, required this.labelText, 
+    {super.key,
+    required this.labelText, 
     required this.hintText, 
     required this.obscureText, 
     required this.onTap,
@@ -20,6 +21,7 @@ class PasswordField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       obscureText: obscureText,
+      controller: controller,
       decoration: InputDecoration(
         prefix: Container(
           padding: const EdgeInsets.symmetric(horizontal: 15),

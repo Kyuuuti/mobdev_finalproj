@@ -10,7 +10,8 @@ class LoginForm extends StatelessWidget {
   final TextEditingController controller;
   
   const LoginForm(
-    {super.key, required this.labelText, 
+    {super.key,
+    required this.labelText, 
     required this.hintText, 
     required this.iconData, 
     required this.textInputType,
@@ -20,6 +21,7 @@ class LoginForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       keyboardType: textInputType,
+      controller: controller,
       decoration: InputDecoration(
         prefixIcon: Container(
           padding: const EdgeInsets.symmetric(horizontal: 15),
