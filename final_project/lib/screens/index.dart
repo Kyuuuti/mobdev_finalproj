@@ -206,6 +206,7 @@ class _LoginState extends State<Login> {
 
   void loginWithGoogle() async {
     try {
+      await GoogleSignIn().signOut();
       final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
       final GoogleSignInAuthentication? googleAuth =
           await googleUser?.authentication;
@@ -214,6 +215,7 @@ class _LoginState extends State<Login> {
       final userCredential =
           await FirebaseAuth.instance.signInWithCredential(credential);
       print(userCredential);
+      Navigator.pushReplacementNamed(context, Home.routeName);
     } catch (e) {
       print(e);
     }
