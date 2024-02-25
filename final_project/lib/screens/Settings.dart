@@ -1,14 +1,20 @@
 // ignore_for_file: file_names
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:midterm/components/LogoutButton.dart';
 import 'package:midterm/screens/index.dart';
 
-class Settings extends StatelessWidget {
+class Settings extends StatefulWidget {
+  static const String routeName = "settings";
   const Settings({super.key});
 
-  static const String routeName = "settings";
+  @override
+  State<Settings> createState() => _SettingsState();
+}
 
+class _SettingsState extends State<Settings> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,16 +36,22 @@ class Settings extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              LogoutButton(text: "Logout", 
-              iconData: Icons.logout, 
-              onPressed: (){
-                Navigator.pushNamedAndRemoveUntil(
-                  context, Login.routeName, (route) => false);
-              })
+              LogoutButton(
+                text: "Logout", 
+                iconData: Icons.logout, 
+                onPressed: logout
+              )
             ],
           ),
         ),
       )
     );
+  }
+
+  void logout() {
+    FirebaseAuth.instance.signOut().then((value) => {
+      GoogleSignIn().signOut().then((value) =>
+        {Navigator.pushReplacementNamed(context, Login.routeName)})
+    });
   }
 }
