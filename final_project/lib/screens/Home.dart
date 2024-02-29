@@ -1,11 +1,10 @@
 // ignore_for_file: file_names, library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
-import 'package:midterm/Dashboard.dart';
-//import 'package:midterm/Notifications.dart';
-//import 'package:midterm/Profile.dart';
-import 'package:midterm/Randomizer.dart';
-import 'package:midterm/Settings.dart';
+import 'package:midterm/screens/Bookmark.dart';
+import 'package:midterm/screens/Dashboard.dart';
+import 'package:midterm/screens/Randomizer.dart';
+import 'package:midterm/screens/Settings.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -55,11 +54,9 @@ class _HomeState extends State<Home> {
           });
         },
         children: const [
-          //list of pages to view
           Dashboard(),
-          Randomizer(),
-          //Notifications(),
-          //Profile()
+          Bookmark(),
+          Randomizer()
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -77,17 +74,13 @@ class _HomeState extends State<Home> {
             label: "Dashboard",
           ),
           BottomNavigationBarItem(
+            icon: Icon(Icons.bookmark), 
+            label: "Bookmarks",
+          ),
+          BottomNavigationBarItem(
             icon: Icon(Icons.loop),
             label: "Randomizer",
-          ),
-          // BottomNavigationBarItem(
-          //   icon: Icon(Icons.notifications),
-          //   label: "Notifications",
-          // ),
-          // BottomNavigationBarItem(
-          //   icon: Icon(Icons.person), 
-          //   label: "Profile",
-          // )
+          )
         ],
       ),
     );

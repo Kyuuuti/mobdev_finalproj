@@ -1,10 +1,13 @@
 // ignore_for_file: file_names, library_private_types_in_public_api
 import 'dart:convert';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:midterm/Details.dart';
-import 'Meal.dart';
+import 'package:midterm/functions.dart';
+import 'package:midterm/screens/Details.dart';
+import '../models/Meal.dart';
 
+Functions func = Functions();
 class Dashboard extends StatefulWidget {
   const Dashboard({Key? key}) : super(key: key);
 
@@ -16,6 +19,8 @@ class Dashboard extends StatefulWidget {
 
 class _DashboardState extends State<Dashboard> {
   List<Meal> meals = [];
+  List<Meal> bookmarkedMeals = [];
+  
   late TextEditingController _searchController;
 
   @override
@@ -23,7 +28,7 @@ class _DashboardState extends State<Dashboard> {
     super.initState();
     _searchController = TextEditingController();
     fetchData();
-  }
+  } 
 
   Future<void> fetchData() async {
     final searchKeyword = _searchController.text;
@@ -38,6 +43,16 @@ class _DashboardState extends State<Dashboard> {
     } else {
       throw Exception('Failed to load data');
     }
+  }
+
+  void toggleBookmark(Meal meal) {
+    setState(() {
+      if (bookmarkedMeals.contains(meal)) {
+        bookmarkedMeals.remove(meal);
+      } else {
+        bookmarkedMeals.add(meal);
+      }
+    });
   }
 
   @override
@@ -66,23 +81,39 @@ class _DashboardState extends State<Dashboard> {
               child: ListView.builder(
                 itemCount: meals.length,
                 itemBuilder: (context, index) {
+                  final meal = meals[index];
                   return ListTile(
                     title: Text(
-                      meals[index].name,
+                      meal.name,
                       style: const TextStyle(
                         color: Colors.red
                       ),
                     ),
-                    leading: const Icon(
-                      Icons.dining,
-                      color: Colors.green,
+                    leading: const Icon(Icons.dining, color: Colors.green),
+                    trailing: IconButton(
+                      onPressed: () async{
+                        func.update(
+                          FirebaseAuth.instance.currentUser!.email.toString(), meal.name);
+                        setState(() {
+                          func.toggleBookmark(meal);
+                          print(meal.isBookmarked);
+                        });
+                      },
+                      icon: meal.isBookmarked
+                    ? Icon(Icons.bookmark)
+                    : Icon(Icons.bookmark_outline),
                     ),
                     onTap: () {
-                      Navigator.pushNamed(
+                      Navigator.push(
                         context,
-                        Details.routeName,
-                        arguments: meals[index],
-                      );
+                        MaterialPageRoute(
+                          builder: (context) => Details(meal: meal)
+                        ),
+                      ).then((value) {
+                        if (value != null && value is Meal) {
+                          toggleBookmark(value);
+                        }
+                      });
                     },
                   );
                 },
@@ -94,45 +125,3 @@ class _DashboardState extends State<Dashboard> {
     );
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import 'package:flutter/material.dart';
-
-// class Dashboard extends StatelessWidget {
-//   const Dashboard({super.key});
-
-//   static const String routeName = "dashboard";
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return const Placeholder();
-//   }
-// }
