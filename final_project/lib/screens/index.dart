@@ -46,7 +46,12 @@ class _LoginState extends State<Login> {
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    const SizedBox(height: 20),
+                    SizedBox(height: 80.0),
+                    Icon(Icons.dinner_dining,size: 80),
+                    SizedBox(height:20.0),
+                    Text("Welcome to Happy Meal!", style: TextStyle(fontSize: 30.0)),
+                    Text("Happy cooking!", style: TextStyle(fontSize: 20.0)),
+                    SizedBox(height: 50.0),
                     
                     LoginForm(
                       labelText: "Email Address",
@@ -113,8 +118,12 @@ class _LoginState extends State<Login> {
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    const Text("Create Account"),
-                    const SizedBox(height: 20),
+                    SizedBox(height: 80.0),
+                    Icon(Icons.dinner_dining,size: 80),
+                    SizedBox(height:20.0),
+                    Text("Welcome to Happy Meal!", style: TextStyle(fontSize: 30.0)),
+                    Text("Create an account", style: TextStyle(fontSize: 20.0)),
+                    SizedBox(height: 50.0),
                     
                     LoginForm(
                       labelText: "Email Address",
