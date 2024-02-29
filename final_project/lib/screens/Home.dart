@@ -54,9 +54,8 @@ class _HomeState extends State<Home> {
           });
         },
         children: const [
-          //list of pages to view
           Dashboard(),
-          Bookmark(bookmarkedMeals: [],),
+          Bookmark(),
           Randomizer()
         ],
       ),

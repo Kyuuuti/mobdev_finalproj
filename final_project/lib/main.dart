@@ -18,39 +18,3 @@ void main() async {
     ),
   ));
 }
-
-// class MyApp extends StatelessWidget {
-//   const MyApp({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       home: Scaffold(
-//         appBar: AppBar(
-//           title: const Text("Midterm App"),
-//           actions: [
-//             IconButton(
-//               onPressed: (){}, 
-//               icon: const Icon(Icons.search),
-//             )
-//           ],
-//         ),
-//         body: const Center(
-//           child: Text("This is my mobile application")
-//         ),
-//         floatingActionButton: FloatingActionButton(
-//           onPressed: (){}, 
-//           child: const Icon(Icons.add)
-//         ),
-//         bottomNavigationBar: BottomNavigationBar(
-//           items: const [
-//           BottomNavigationBarItem(
-//             icon: Icon(Icons.home), label: "Home"),
-//           BottomNavigationBarItem(
-//             icon: Icon(Icons.settings), label: "Settings")
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }

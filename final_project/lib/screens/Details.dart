@@ -55,8 +55,8 @@ class _DetailsState extends State<Details> {
               children:[
                 Image.network(
                 meal.imgUrl,
-                width: 200, // Adjust width as needed
-                height: 200, // Adjust height as needed
+                width: 200,
+                height: 200,
               ),
               SizedBox(height: 20),
                 Text('${meal.name}'),

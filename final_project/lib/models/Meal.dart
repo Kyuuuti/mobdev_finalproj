@@ -6,6 +6,7 @@ class Meal {
   final String area;
   final String imgUrl;
   final String ins;
+  bool isBookmarked;
 
   Meal({
     required this.id,
@@ -13,7 +14,8 @@ class Meal {
     required this.category,
     required this.area,
     required this.imgUrl,
-    required this.ins
+    required this.ins,
+     required this.isBookmarked
   });
 
   factory Meal.fromJson(Map<String, dynamic> json) {
@@ -23,7 +25,8 @@ class Meal {
       category: json['strCategory'],
       area: json['strArea'],
       imgUrl: json['strMealThumb'],
-      ins: json['strInstructions']
+      ins: json['strInstructions'],
+      isBookmarked: false
     );
   }
 }

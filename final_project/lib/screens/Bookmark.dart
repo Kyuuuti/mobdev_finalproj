@@ -1,24 +1,39 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:midterm/functions.dart';
 import 'package:midterm/screens/Details.dart';
 import 'package:midterm/models/Meal.dart';
 
 class Bookmark extends StatefulWidget {
-  final List<Meal> bookmarkedMeals;
-
-  const Bookmark({Key? key, required this.bookmarkedMeals}) : super(key: key);
+  const Bookmark({Key? key}) : super(key: key);
 
   @override
   _BookmarkState createState() => _BookmarkState();
 }
 
 class _BookmarkState extends State<Bookmark> {
-  void toggleBookmark(Meal meal) {
-    setState(() {
-      if (widget.bookmarkedMeals.contains(meal)) {
-        widget.bookmarkedMeals.remove(meal);
-      } else {
-        widget.bookmarkedMeals.add(meal);
+  final Functions func = Functions();
+  List<Meal> bookmarkedMeals = [];
+
+  @override
+  void initState() {
+    super.initState();
+    fetchBookmarkedMeals();
+  }
+
+  Future<void> fetchBookmarkedMeals() async {
+    List<String> bookmarkedMealIds = await func.getBookmarks();
+
+    List<Meal> meals = [];
+    for (String id in bookmarkedMealIds) {
+      Meal? meal = await func.getMealById(id);
+      if (meal != null) {
+        meals.add(meal);
       }
+    }
+
+    setState(() {
+      bookmarkedMeals = meals;
     });
   }
 
@@ -26,11 +41,30 @@ class _BookmarkState extends State<Bookmark> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView.builder(
-        itemCount: widget.bookmarkedMeals.length,
+        itemCount: bookmarkedMeals.length,
         itemBuilder: (context, index) {
-          final meal = widget.bookmarkedMeals[index];
+          final meal = bookmarkedMeals[index];
           return ListTile(
-            title: Text(meal.name),
+            title: Text(
+              meal.name,
+              style: const TextStyle(
+                color: Colors.red
+               ),
+            ),
+            leading: const Icon(Icons.dining, color: Colors.blue),
+            trailing: IconButton(
+              onPressed: () async{
+                func.update(
+                  FirebaseAuth.instance.currentUser!.email.toString(), meal.name);
+                setState(() {
+                  func.toggleBookmark(meal);
+                  print(meal.isBookmarked);
+                });
+              },
+              icon: meal.isBookmarked
+            ? Icon(Icons.bookmark)
+            : Icon(Icons.bookmark_outline),
+            ),
             onTap: () {
               Navigator.push(
                 context,
@@ -39,14 +73,9 @@ class _BookmarkState extends State<Bookmark> {
                 ),
               );
             },
-            trailing: IconButton(
-              icon: Icon(Icons.bookmark),
-              onPressed: () => toggleBookmark(meal),
-            ),
           );
         },
       ),
     );
   }
 }
-

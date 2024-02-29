@@ -1,10 +1,13 @@
 // ignore_for_file: file_names, library_private_types_in_public_api
 import 'dart:convert';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:midterm/functions.dart';
 import 'package:midterm/screens/Details.dart';
 import '../models/Meal.dart';
 
+Functions func = Functions();
 class Dashboard extends StatefulWidget {
   const Dashboard({Key? key}) : super(key: key);
 
@@ -79,7 +82,6 @@ class _DashboardState extends State<Dashboard> {
                 itemCount: meals.length,
                 itemBuilder: (context, index) {
                   final meal = meals[index];
-                  final isBookmarked = bookmarkedMeals.contains(meal);
                   return ListTile(
                     title: Text(
                       meal.name,
@@ -89,8 +91,17 @@ class _DashboardState extends State<Dashboard> {
                     ),
                     leading: const Icon(Icons.dining, color: Colors.green),
                     trailing: IconButton(
-                      icon: isBookmarked ? Icon(Icons.bookmark) : Icon(Icons.bookmark_outline),
-                      onPressed: () => toggleBookmark(meal)
+                      onPressed: () async{
+                        func.update(
+                          FirebaseAuth.instance.currentUser!.email.toString(), meal.name);
+                        setState(() {
+                          func.toggleBookmark(meal);
+                          print(meal.isBookmarked);
+                        });
+                      },
+                      icon: meal.isBookmarked
+                    ? Icon(Icons.bookmark)
+                    : Icon(Icons.bookmark_outline),
                     ),
                     onTap: () {
                       Navigator.push(
