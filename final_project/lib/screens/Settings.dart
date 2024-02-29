@@ -33,9 +33,12 @@ class _SettingsState extends State<Settings> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              const SizedBox(
-                height: 20,
-              ),
+              SizedBox(height: 80.0),
+                    Icon(Icons.dinner_dining,size: 80),
+                    SizedBox(height:20.0),
+                    Text("Thank you for using Happy Meal!", style: TextStyle(fontSize: 20.0)),
+                    SizedBox(height: 50.0),
+                    
               LogoutButton(
                 text: "Logout", 
                 iconData: Icons.logout, 

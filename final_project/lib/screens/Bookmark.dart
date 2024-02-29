@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:midterm/functions.dart';
 import 'package:midterm/screens/Details.dart';
@@ -53,17 +52,15 @@ class _BookmarkState extends State<Bookmark> {
             ),
             leading: const Icon(Icons.dining, color: Colors.blue),
             trailing: IconButton(
-              onPressed: () async{
-                func.update(
-                  FirebaseAuth.instance.currentUser!.email.toString(), meal.name);
+              onPressed: () async {
+                func.toggleBookmark(meal);
                 setState(() {
-                  func.toggleBookmark(meal);
-                  print(meal.isBookmarked);
+                  meal.isBookmarked = !meal.isBookmarked;
                 });
               },
               icon: meal.isBookmarked
-            ? Icon(Icons.bookmark)
-            : Icon(Icons.bookmark_outline),
+                  ? Icon(Icons.bookmark)
+                  : Icon(Icons.bookmark_outline),
             ),
             onTap: () {
               Navigator.push(
